@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ArticleDropDownCard extends StatelessWidget {
-  const ArticleDropDownCard({super.key});
+  const ArticleDropDownCard({super.key, required this.width, required this.hieght});
+
+  final double width;
+  final double hieght;
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size.width,
-      height: 70,
+      width: width,
+      height: hieght,
       child: Card(
         surfaceTintColor: Colors.white,
         child: Align(

@@ -93,6 +93,16 @@ class AppTheme {
         color:Colors.white,
       ),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        textStyle:const TextStyle(fontSize: 20,color: Colors.white),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.orange,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    ),
     iconTheme: const IconThemeData(
       size: 24,
       color: Colors.white,
