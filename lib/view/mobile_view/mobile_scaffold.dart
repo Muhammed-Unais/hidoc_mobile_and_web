@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 import 'package:hidoc_app/view/mobile_view/widgets/article_card_.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/article_dropdown_card.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/hidoc_bulletin_content.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/latest_article_and_explore_morecard.dart';
+import 'package:hidoc_app/view/widgets/article_dropdown_card.dart';
+import 'package:hidoc_app/view/widgets/hidoc_bulletin_content.dart';
+import 'package:hidoc_app/view/widgets/latest_article_and_explore_morecard.dart';
 import 'package:hidoc_app/view/mobile_view/widgets/news_card.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/quizzes_and_medical_card.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/screen_elaveted_buttons.dart';
+import 'package:hidoc_app/view/widgets/quizzes_and_medical_card.dart';
+import 'package:hidoc_app/view/widgets/screen_elaveted_buttons.dart';
 import 'package:hidoc_app/view/mobile_view/widgets/special_future_card.dart';
 import 'package:hidoc_app/view/mobile_view/widgets/top_app_bar.dart';
 import 'package:hidoc_app/view/mobile_view/widgets/top_paint.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/trending_articles_.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/trending_hidoc_bulletin.dart';
+import 'package:hidoc_app/view/widgets/trending_articles_.dart';
+import 'package:hidoc_app/view/widgets/trending_hidoc_bulletin.dart';
 
 class MobileScaffold extends StatelessWidget {
   const MobileScaffold({super.key});
@@ -66,7 +66,7 @@ class MobileScaffold extends StatelessWidget {
                   Column(
                     children: List<Widget>.generate(
                       10,
-                      (index) => const HiDocBulletinContent(),
+                      (index) =>  HiDocBulletinContent(index: index),
                     ),
                   ),
                   const TrendingHidocBulletin(),
@@ -97,7 +97,7 @@ class MobileScaffold extends StatelessWidget {
                   const SizedBox(height: AppConstants.largeMargin),  
                   const NewsCard(),
                   const SizedBox(height: AppConstants.largeMargin),  
-                  const QuizessAndMedicalCard(),
+                  const QuizessAndMedicalCard(width: double.infinity),
                   const SizedBox(height: AppConstants.largeMargin),  
                   const SpecialFutureCard(),
                   const SizedBox(height: AppConstants.largeMargin),    

@@ -36,7 +36,8 @@ class ArticlesCard extends StatelessWidget {
       ),
     );
   }
-
+  
+  // readFr
   Container readFullArticleAndEarnpoints(Size size, BuildContext context) =>
       Container(
         margin: AppConstants.marginLeft(AppConstants.mediumMargin),

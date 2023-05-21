@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ArticleDropDownCard extends StatelessWidget {
-  const ArticleDropDownCard({super.key, required this.width, required this.hieght});
+  const ArticleDropDownCard(
+      {super.key, required this.width, required this.hieght});
 
   final double width;
   final double hieght;
@@ -12,6 +13,7 @@ class ArticleDropDownCard extends StatelessWidget {
       width: width,
       height: hieght,
       child: Card(
+        elevation: 5,
         surfaceTintColor: Colors.white,
         child: Align(
           alignment: Alignment.center,

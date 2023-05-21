@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class LatestArticleExploreMoreCard extends StatelessWidget {
-  const LatestArticleExploreMoreCard({super.key, this.cardHeading,this.itemsCount =0});
+  const LatestArticleExploreMoreCard({
+    super.key,
+    this.cardHeading,
+    this.itemsCount = 0,
+    this.width =double.infinity,
+  });
 
   final String? cardHeading;
   final int itemsCount;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: width,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey, width: 1),
       ),
@@ -18,7 +24,7 @@ class LatestArticleExploreMoreCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            cardHeading ??"Articles",
+            cardHeading ?? "Articles",
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const Divider(

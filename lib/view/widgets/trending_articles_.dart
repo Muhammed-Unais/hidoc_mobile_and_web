@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class TrendingArticles extends StatelessWidget {
-  const TrendingArticles({super.key});
+  const TrendingArticles({super.key,this.width = double.infinity});
 
+  final double width;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: width,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey, width: 1),
       ),

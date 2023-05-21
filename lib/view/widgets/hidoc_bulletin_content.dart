@@ -2,23 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class HiDocBulletinContent extends StatelessWidget {
-  const HiDocBulletinContent({super.key,this.isTrending =false}); 
+  const HiDocBulletinContent(
+      {super.key,
+      this.isTrending = false,
+      this.width,
+      required this.index});
 
   final bool isTrending;
+  final double? width;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    //
     return SizedBox(
-      width: size.width,
+      width: width ??double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          isTrending?const SizedBox(): Container(
-            color: Theme.of(context).primaryColor,
-            width: 160,
-            height: 10,
-          ),
+          isTrending
+              ? const SizedBox()
+              : Container(
+                  color: Theme.of(context).primaryColor,
+                  width: 160,
+                  height: 10,
+                ),
           const SizedBox(
             height: AppConstants.smallMargin,
           ),

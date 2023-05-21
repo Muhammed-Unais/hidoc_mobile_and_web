@@ -3,12 +3,15 @@ import 'package:hidoc_app/res/app_constatns.dart';
 import 'package:hidoc_app/res/widgets/rounded_icon_button.dart';
 
 class QuizessAndMedicalCard extends StatelessWidget {
-  const QuizessAndMedicalCard({super.key});
+  const QuizessAndMedicalCard({super.key, this.width});
+
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: width,
+      height: 200,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey, width: 1),
       ),
