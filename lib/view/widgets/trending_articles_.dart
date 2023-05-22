@@ -2,9 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class TrendingArticles extends StatelessWidget {
-  const TrendingArticles({super.key,this.width = double.infinity});
+  const TrendingArticles(
+      {super.key,
+      this.width = double.infinity,
+      this.trendingArticleTitle,
+      this.fullImageUrl,
+      this.smallImageUrl,
+      this.smallArticleTitle,
+      this.smallArticleDiscription});
 
   final double width;
+
+  final String? trendingArticleTitle;
+  final String? fullImageUrl;
+  final String? smallImageUrl;
+  final String? smallArticleTitle;
+  final String? smallArticleDiscription;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,14 +37,14 @@ class TrendingArticles extends StatelessWidget {
             thickness: 1,
           ),
           ClipRRect(
-            child: Image.network(
+            child: Image.network(fullImageUrl ??
                 "https://media.istockphoto.com/id/1390650720/photo/digital-network-connection-abstract-connection-of-dots-and-lines-technology-background-plexus.jpg?b=1&s=170667a&w=0&k=20&c=SUkUz3EzbbcC25vGSHdV_9MxR0Mun8giVcuHoyOKwDo="),
           ),
           const SizedBox(
             height: AppConstants.smallMargin,
           ),
           Text(
-            "of course, there's the flip side of that where vice versaa hen, of hen, of course, there's the flip side of that",
+            trendingArticleTitle ?? "",
             style: Theme.of(context).textTheme.bodyLarge,
             maxLines: 2,
           ),
@@ -44,7 +58,7 @@ class TrendingArticles extends StatelessWidget {
                 height: 60,
                 width: 100,
                 child: ClipRRect(
-                  child: Image.network(
+                  child: Image.network(smallImageUrl ??
                       "https://media.istockphoto.com/id/1390650720/photo/digital-network-connection-abstract-connection-of-dots-and-lines-technology-background-plexus.jpg?b=1&s=170667a&w=0&k=20&c=SUkUz3EzbbcC25vGSHdV_9MxR0Mun8giVcuHoyOKwDo="),
                 ),
               ),
@@ -53,7 +67,7 @@ class TrendingArticles extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  "of course, there's the flip side of that where vice versaa hen, of hen, of course, there's the flip side of that",
+                  smallArticleTitle ?? "",
                   style: Theme.of(context).textTheme.bodyLarge,
                   maxLines: 2,
                 ),
@@ -65,7 +79,7 @@ class TrendingArticles extends StatelessWidget {
             color: Colors.grey,
           ),
           Text(
-            "of course, there's the flip side of that where vice versaa hen, of hen, of course, there's the flip side of that",
+            smallArticleDiscription ??"",
             style: Theme.of(context).textTheme.bodyLarge,
             maxLines: 2,
           ),

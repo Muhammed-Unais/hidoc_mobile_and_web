@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hidoc_app/model/article_model.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class LatestArticleExploreMoreCard extends StatelessWidget {
@@ -6,12 +7,14 @@ class LatestArticleExploreMoreCard extends StatelessWidget {
     super.key,
     this.cardHeading,
     this.itemsCount = 0,
-    this.width =double.infinity,
+    this.width =double.infinity, this.latestOrexploreArticle,
   });
 
   final String? cardHeading;
   final int itemsCount;
   final double width;
+  final List<Article>? latestOrexploreArticle;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +35,11 @@ class LatestArticleExploreMoreCard extends StatelessWidget {
           ),
           Column(
             children: List.generate(
-              itemsCount,
+              latestOrexploreArticle?.length ?? 0,
               (index) => Column(
                 children: [
                   Text(
-                    "of course, there's the flip side of that where vice versaa hen, of hen, of course, there's the flip side of that where vice versa course, there's the flip side of that where vice versahen, of course, there's the flip side of that where vice versa?",
+                    latestOrexploreArticle?[index].articleDescription ??"",
                     style: Theme.of(context).textTheme.bodyLarge,
                     maxLines: 2,
                   ),

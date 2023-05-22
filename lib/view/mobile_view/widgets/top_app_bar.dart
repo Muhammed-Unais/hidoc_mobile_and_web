@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hidoc_app/view/mobile_view/widgets/home_icon.dart';
 
 class TopAppBar extends StatelessWidget {
   const TopAppBar({super.key});
@@ -9,9 +8,7 @@ class TopAppBar extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width,
-      height: size.height * 0.1,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             decoration: BoxDecoration(
@@ -32,25 +29,7 @@ class TopAppBar extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: size.width * 0.6,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const HomeIcon(),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "ARTICLES",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
+         
         ],
       ),
     );

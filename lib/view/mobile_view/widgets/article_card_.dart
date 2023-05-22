@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class ArticlesCard extends StatelessWidget {
-  const ArticlesCard({super.key});
+  const ArticlesCard(
+      {super.key,
+      this.imageUrl,
+      this.articleTitle,
+      this.articleDiscrption,
+      this.rewardPoints});
+
+  final String? imageUrl;
+  final String? articleTitle;
+  final String? articleDiscrption;
+  final String? rewardPoints;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +46,7 @@ class ArticlesCard extends StatelessWidget {
       ),
     );
   }
-  
+
   // readFr
   Container readFullArticleAndEarnpoints(Size size, BuildContext context) =>
       Container(
@@ -63,8 +73,8 @@ class ArticlesCard extends StatelessWidget {
                 height: 70,
                 width: 70,
                 child: Text(
-                  "Points \n 2",
-                  style: Theme.of(context).primaryTextTheme.labelMedium,
+                  "Points \n $rewardPoints",
+                  style: Theme.of(context).primaryTextTheme.labelLarge,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -87,16 +97,16 @@ class ArticlesCard extends StatelessWidget {
                 children: [
                   Flexible(
                     child: Text(
-                      "At Google I/O 2021, Google announced the next evolution of Material Design, Material You",
+                      articleTitle ?? "",
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                   const SizedBox(
-                    height: AppConstants.mediumPadding,
+                    height: AppConstants.smallMargin,
                   ),
-                  const Flexible(
+                  Flexible(
                     child: Text(
-                      "At Google I/O 2021, Google announced the next evolution of Material Design, Material You",
+                      articleDiscrption ?? "",
                     ),
                   ),
                 ],
@@ -109,16 +119,16 @@ class ArticlesCard extends StatelessWidget {
   Container newsImage(Size size) => Container(
         height: 200,
         width: size.width,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadiusDirectional.only(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadiusDirectional.only(
             topStart: Radius.circular(20),
             topEnd: Radius.circular(20),
           ),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: NetworkImage(
-              "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2021/03/609849-mental-health-hub-1200x675-twitter.jpg",
-            ),
+            image: NetworkImage(imageUrl != null && imageUrl!.isNotEmpty
+                ? imageUrl!
+                : "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2021/03/609849-mental-health-hub-1200x675-twitter.jpg"),
           ),
         ),
       );

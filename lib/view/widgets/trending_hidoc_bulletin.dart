@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hidoc_app/model/article_model.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 import 'package:hidoc_app/view/widgets/hidoc_bulletin_content.dart';
 
 class TrendingHidocBulletin extends StatelessWidget {
-  const TrendingHidocBulletin({super.key,this.width});
+  const TrendingHidocBulletin({super.key, this.width, this.trandingBulletin});
 
   final double? width;
+  final List<Article>? trandingBulletin;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,8 +29,10 @@ class TrendingHidocBulletin extends StatelessWidget {
           ),
           Column(
             children: List<Widget>.generate(
-              4,
-              (index) =>  HiDocBulletinContent(
+              trandingBulletin?.length ?? 0,
+              (index) => HiDocBulletinContent(
+                description: trandingBulletin?[index].articleDescription,
+                title: trandingBulletin?[index].articleDescription,
                 isTrending: true,
                 index: index,
               ),

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-Articles articlesFromJson(Map<String,dynamic> data) => Articles.fromJson(data);
+Articles articlesFromJson(Map<String, dynamic> data) => Articles.fromJson(data);
 
 String articlesToJson(Articles data) => json.encode(data.toJson());
 
@@ -38,7 +38,7 @@ class Data {
   List<News>? news;
   List<Article>? trandingBulletin;
   String? specialityName;
-  List<dynamic>? latestArticle;
+  List<Article>? latestArticle;
   List<Article>? exploreArticle;
   List<Article>? trandingArticle;
   Article? article;
@@ -68,7 +68,8 @@ class Data {
         specialityName: json["specialityName"],
         latestArticle: json["latestArticle"] == null
             ? []
-            : List<dynamic>.from(json["latestArticle"]!.map((x) => x)),
+            : List<Article>.from(
+                json["latestArticle"]!.map((x) => Article.fromJson(x))),
         exploreArticle: json["exploreArticle"] == null
             ? []
             : List<Article>.from(
@@ -96,7 +97,7 @@ class Data {
         "specialityName": specialityName,
         "latestArticle": latestArticle == null
             ? []
-            : List<dynamic>.from(latestArticle!.map((x) => x)),
+            : List<dynamic>.from(latestArticle!.map((x) => x.toJson())),
         "exploreArticle": exploreArticle == null
             ? []
             : List<dynamic>.from(exploreArticle!.map((x) => x.toJson())),

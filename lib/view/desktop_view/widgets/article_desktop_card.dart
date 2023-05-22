@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class ArticleCardDesktop extends StatelessWidget {
-  const ArticleCardDesktop({super.key});
+  const ArticleCardDesktop(
+      {super.key,
+      this.imageurl,
+      this.articleTitle,
+      this.articleDiscription,
+      this.rewardPoints});
+
+  final String? imageurl;
+  final String? articleTitle;
+  final String? articleDiscription;
+  final String? rewardPoints;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +32,9 @@ class ArticleCardDesktop extends StatelessWidget {
               articleTitleAndContent(context, size)
             ],
           ),
-          const SizedBox(height: AppConstants.extraLargeMargin,),
+          const SizedBox(
+            height: AppConstants.extraLargeMargin,
+          ),
           const Divider(
             thickness: 0.5,
             color: Colors.grey,
@@ -44,7 +56,7 @@ class ArticleCardDesktop extends StatelessWidget {
         children: [
           Flexible(
             child: Text(
-              "At Google I/O 2021, Google announced the next evolution of Material Design, Material You",
+              articleTitle ?? "",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
@@ -53,7 +65,7 @@ class ArticleCardDesktop extends StatelessWidget {
           ),
           Flexible(
             child: Text(
-              "At Google I/O 2021, Google announced the next evolution of Material Design, Material You",
+              articleDiscription ?? "",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
@@ -80,11 +92,12 @@ class ArticleCardDesktop extends StatelessWidget {
     return Container(
       height: 230,
       width: size.width * 0.24,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(
-            "https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg",
+            imageurl ??
+                "https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg",
           ),
         ),
       ),
@@ -101,7 +114,7 @@ class ArticleCardDesktop extends StatelessWidget {
           height: 70,
           width: 70,
           child: Text(
-            "Points \n 2",
+            "Points \n $rewardPoints",
             style: Theme.of(context).primaryTextTheme.labelMedium,
             textAlign: TextAlign.center,
           ),

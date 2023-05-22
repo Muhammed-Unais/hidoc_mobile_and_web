@@ -18,7 +18,7 @@ class ArticlesViewModel extends ChangeNotifier {
     setArticlesData(ApiResponse.loading());
     _myRepo.getArticle().then(
       (value) {
-        log(value.data?.news.toString() ??"");
+        log(value.data?.news.toString() ?? "");
         setArticlesData(ApiResponse.completed(value));
       },
     ).onError(
@@ -29,5 +29,9 @@ class ArticlesViewModel extends ChangeNotifier {
         );
       },
     );
+  }
+
+  ArticlesViewModel() {
+    getArticles();
   }
 }

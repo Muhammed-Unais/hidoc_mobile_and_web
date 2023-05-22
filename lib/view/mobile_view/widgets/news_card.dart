@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 
 class NewsCard extends StatelessWidget {
-  const NewsCard({super.key});
+  const NewsCard({super.key, this.imageUrl, this.newsContent, this.newsTitle});
+
+  final String? imageUrl;
+  final String? newsContent;
+  final String? newsTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +24,14 @@ class NewsCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "News",
+                  newsTitle??"News",
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(
                   height: AppConstants.largeMargin,
                 ),
                 Text(
-                  " of course, there's the flip side of that where vice versaa hen,of hen, of course,there's the flip side of that",
+                  newsContent ?? "",
                   style: Theme.of(context).textTheme.bodyLarge,
                   maxLines: 2,
                 ),
@@ -36,10 +40,11 @@ class NewsCard extends StatelessWidget {
           ),
           Container(
             height: 250,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                  "https://media.istockphoto.com/id/1390650720/photo/digital-network-connection-abstract-connection-of-dots-and-lines-technology-background-plexus.jpg?b=1&s=170667a&w=0&k=20&c=SUkUz3EzbbcC25vGSHdV_9MxR0Mun8giVcuHoyOKwDo=",
+                  imageUrl ??
+                      "https://media.istockphoto.com/id/1390650720/photo/digital-network-connection-abstract-connection-of-dots-and-lines-technology-background-plexus.jpg?b=1&s=170667a&w=0&k=20&c=SUkUz3EzbbcC25vGSHdV_9MxR0Mun8giVcuHoyOKwDo=",
                 ),
                 fit: BoxFit.cover,
               ),
