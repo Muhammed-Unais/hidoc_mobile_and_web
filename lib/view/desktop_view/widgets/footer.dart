@@ -28,7 +28,7 @@ class Footer extends StatelessWidget {
                 ),
                 const SizedBox(height: AppConstants.smallMargin),
                 const Text(
-                  'Short app details in two lines',
+                  "Medical App for Doctors in India",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,

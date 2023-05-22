@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hidoc_app/data/response/status.dart';
 import 'package:hidoc_app/model/article_model.dart';
 import 'package:hidoc_app/res/app_constatns.dart';
 import 'package:hidoc_app/res/widgets/elevated_button.dart';
@@ -24,132 +25,147 @@ class DesktopScaffold extends StatelessWidget {
       appBar: const CustomAppBar(),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Consumer<ArticlesViewModel>(builder: (context, value, _) {
-          Article? articledata = value.apiResponse.data?.data?.article;
-          final List<Article>? bulletin =
-              value.apiResponse.data?.data?.bulletin;
-          final List<Article>? trendingArticleData =
-              value.apiResponse.data?.data?.trandingArticle;
-          final List<Article>? trendingbulletinData =
-              value.apiResponse.data?.data?.trandingBulletin;
-          final List<Article>? latestArticleData =
-              value.apiResponse.data?.data?.latestArticle;
-          final List<Article>? exploreArticleData =
-              value.apiResponse.data?.data?.exploreArticle;
-          final newsData = value.apiResponse.data?.data?.news;
-          return Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
-                child: Column(
+        child: Consumer<ArticlesViewModel>(
+          builder: (context, value, _) {
+            Article? articledata = value.apiResponse.data?.data?.article;
+            final List<Article>? bulletin =
+                value.apiResponse.data?.data?.bulletin;
+            final List<Article>? trendingArticleData =
+                value.apiResponse.data?.data?.trandingArticle;
+            final List<Article>? trendingbulletinData =
+                value.apiResponse.data?.data?.trandingBulletin;
+            final List<Article>? latestArticleData =
+                value.apiResponse.data?.data?.latestArticle;
+            final List<Article>? exploreArticleData =
+                value.apiResponse.data?.data?.exploreArticle;
+            final newsData = value.apiResponse.data?.data?.news;
+            switch (value.apiResponse.status) {
+              case Status.loading:
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              case Status.error:
+                return Text(value.apiResponse.message ?? "");
+
+              case Status.loaded:
+                return Column(
                   children: [
-                    const SizedBox(
-                      height: AppConstants.largeMargin,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Articles",
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppConstants.largeMargin,
-                    ),
-                    ArticleDropDownCard(
-                      width: size.width * 0.4,
-                      hieght: 50,
-                    ),
-                    const SizedBox(
-                      height: AppConstants.largeMargin,
-                    ),
-                    // content selector=======
-                    ArticleCardDesktop(
-                      articleDiscription: articledata?.articleDescription,
-                      articleTitle: articledata?.articleTitle,
-                      imageurl: articledata?.articleImg,
-                      rewardPoints: articledata?.rewardPoints.toString(),
-                    ),
-                    const SizedBox(
-                      height: AppConstants.largeMargin,
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Hidoc Bulletin",
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ),
-                    // Hidoc bulletin and trending bulletin
-                    HidocBulletinDesktop(
-                        bulletin: bulletin,
-                        trendingBuletin: trendingbulletinData),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    SizedBox(
-                      width: 400,
-                      height: 50,
-                      child: ElevatedButtons(
-                        buttonAction: () {},
-                        color: Theme.of(context).primaryColor,
-                        text: "Read More Bulletin",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppConstants.extraLargeMargin,
-                    ),
-                    // Latest article Trending Articles,Explore more Articles
-                    AllTypeArticlesDesktop(
-                      latestArticle: latestArticleData,
-                      latestOrexploreArticle: exploreArticleData,
-                      trendingtArticle: trendingArticleData,
-                    ),
-                    const SizedBox(
-                      height: AppConstants.extraLargeMargin,
-                    ),
-                    Text(
-                      "What's more on Hidoc Dr.",
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    const SizedBox(
-                      height: AppConstants.extraLargeMargin,
-                    ),
-                    SizedBox(
-                      width: size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 100),
+                      child: Column(
                         children: [
-                          NewsCardDesktop(
-                            imageUrl: newsData?[0].urlToImage,
-                            newsDiscription: newsData?[0].description,
-                            title: newsData?[0].title,
+                          const SizedBox(
+                            height: AppConstants.largeMargin,
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Articles",
+                              style: Theme.of(context).textTheme.headlineLarge,
+                            ),
                           ),
                           const SizedBox(
-                            width: AppConstants.extraLargeMargin,
+                            height: AppConstants.largeMargin,
                           ),
-                          const Expanded(
-                            child: QuizessAndMedicalCard(),
+                          ArticleDropDownCard(
+                            width: size.width * 0.4,
+                            hieght: 50,
+                          ),
+                          const SizedBox(
+                            height: AppConstants.largeMargin,
+                          ),
+                          // content selector=======
+                          ArticleCardDesktop(
+                            articleDiscription: articledata?.articleDescription,
+                            articleTitle: articledata?.articleTitle,
+                            imageurl: articledata?.articleImg,
+                            rewardPoints: articledata?.rewardPoints.toString(),
+                          ),
+                          const SizedBox(
+                            height: AppConstants.largeMargin,
+                          ),
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "Hidoc Bulletin",
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                          ),
+                          // Hidoc bulletin and trending bulletin
+                          HidocBulletinDesktop(
+                              bulletin: bulletin,
+                              trendingBuletin: trendingbulletinData),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          SizedBox(
+                            width: 400,
+                            height: 50,
+                            child: ElevatedButtons(
+                              buttonAction: () {},
+                              color: Theme.of(context).primaryColor,
+                              text: "Read More Bulletin",
+                            ),
+                          ),
+                          const SizedBox(
+                            height: AppConstants.extraLargeMargin,
+                          ),
+                          // Latest article Trending Articles,Explore more Articles
+                          AllTypeArticlesDesktop(
+                            latestArticle: latestArticleData,
+                            latestOrexploreArticle: exploreArticleData,
+                            trendingtArticle: trendingArticleData,
+                          ),
+                          const SizedBox(
+                            height: AppConstants.extraLargeMargin,
+                          ),
+                          Text(
+                            "What's more on Hidoc Dr.",
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          const SizedBox(
+                            height: AppConstants.extraLargeMargin,
+                          ),
+                          SizedBox(
+                            width: size.width,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                NewsCardDesktop(
+                                  imageUrl: newsData?[0].urlToImage,
+                                  newsDiscription: newsData?[0].description,
+                                  title: newsData?[0].title,
+                                ),
+                                const SizedBox(
+                                  width: AppConstants.extraLargeMargin,
+                                ),
+                                const Expanded(
+                                  child: QuizessAndMedicalCard(),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: AppConstants.largeMargin,
+                          ),
+                          const SpecialFutureCard(
+                            isMobile: false,
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(
-                      height: AppConstants.largeMargin,
+                      height: AppConstants.extraLargeMargin,
                     ),
-                    const SpecialFutureCard(
-                      isMobile: false,
-                    ),
+                    const Footer()
                   ],
-                ),
-              ),
-              const SizedBox(
-                height: AppConstants.extraLargeMargin,
-              ),
-              const Footer()
-            ],
-          );
-        }),
+                );
+
+              default:
+                return const SizedBox();
+            }
+          },
+        ),
       ),
     );
   }
